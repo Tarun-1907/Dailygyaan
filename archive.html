@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyGyaan - Archive</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Same head content as other pages -->
+</head>
+<style>
+    /* Chatbot Container */
+.chatbot-container {
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ z-index: 1000;
+ width: 350px;
+ background-color: white;
+ border-radius: 10px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+ display: none;
+ font-family: 'Inter', sans-serif;
+ overflow: hidden;
+}
+
+/* Chatbot Toggle Button */
+.chatbot-toggle {
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ background-color: #4a6fa5;
+ color: white;
+ width: 50px;
+ height: 50px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+ z-index: 1001;
+ transition: transform 0.2s ease;
+}
+
+.chatbot-toggle:hover {
+ transform: scale(1.1);
+}
+
+.chatbot-toggle i {
+ font-size: 20px;
+}
+
+/* Chatbot Header */
+.chatbot-header {
+ background-color: #4a6fa5;
+ color: white;
+ padding: 12px 15px;
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.chatbot-title {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ font-weight: 600;
+}
+
+.chatbot-actions {
+ display: flex;
+ gap: 10px;
+}
+
+.chatbot-actions i {
+ cursor: pointer;
+ opacity: 0.8;
+ transition: opacity 0.2s ease;
+}
+
+.chatbot-actions i:hover {
+ opacity: 1;
+}
+
+/* Chatbot Body */
+.chatbot-body {
+ height: 400px;
+ display: flex;
+ flex-direction: column;
+ background-color: #f9f9f9;
+}
+
+/* Messages Area */
+.chatbot-messages {
+ flex: 1;
+ padding: 15px;
+ overflow-y: auto;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+}
+
+/* Message Bubbles */
+.message {
+ max-width: 80%;
+ padding: 10px 14px;
+ border-radius: 15px;
+ line-height: 1.4;
+ font-size: 14px;
+ word-wrap: break-word;
+}
+
+.bot-message {
+ align-self: flex-start;
+ background-color: #ffffff;
+ border: 1px solid #e0e0e0;
+ border-radius: 15px 15px 15px 0;
+ color: #333;
+}
+
+.user-message {
+ align-self: flex-end;
+ background-color: #4a6fa5;
+ color: white;
+ border-radius: 15px 15px 0 15px;
+}
+
+/* Input Area */
+.chatbot-input-area {
+ padding: 12px;
+ border-top: 1px solid #e0e0e0;
+ display: flex;
+ background-color: white;
+}
+
+.chatbot-input {
+ flex: 1;
+ padding: 10px 15px;
+ border: 1px solid #ddd;
+ border-radius: 20px;
+ outline: none;
+ font-size: 14px;
+ transition: border-color 0.2s ease;
+}
+
+.chatbot-input:focus {
+ border-color: #4a6fa5;
+}
+
+.chatbot-send-btn {
+ background-color: #4a6fa5;
+ color: white;
+ border: none;
+ border-radius: 50%;
+ width: 38px;
+ height: 38px;
+ margin-left: 8px;
+ cursor: pointer;
+ transition: background-color 0.2s ease;
+}
+
+.chatbot-send-btn:hover {
+ background-color: #3a5a8f;
+}
+
+.chatbot-send-btn:disabled {
+ background-color: #cccccc;
+ cursor: not-allowed;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+ display: flex;
+ padding: 10px 15px;
+ background-color: #ffffff;
+ border: 1px solid #e0e0e0;
+ border-radius: 15px 15px 15px 0;
+ align-self: flex-start;
+ margin-bottom: 12px;
+ gap: 5px;
+}
+
+.typing-dot {
+ width: 8px;
+ height: 8px;
+ background-color: #666;
+ border-radius: 50%;
+ animation: typingAnimation 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+ animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+ animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+ animation-delay: 0.4s;
+}
+
+@keyframes typingAnimation {
+ 0%, 60%, 100% { 
+     transform: translateY(0); 
+     opacity: 0.6;
+ }
+ 30% { 
+     transform: translateY(-5px); 
+     opacity: 1;
+ }
+}
+
+/* Scrollbar styling */
+.chatbot-messages::-webkit-scrollbar {
+ width: 6px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+ background: #f1f1f1;
+ border-radius: 3px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+ background: #c1c1c1;
+ border-radius: 3px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb:hover {
+ background: #a8a8a8;
+}
+ </style>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Daily<span>Gyaan</span></h1>
+                <p class="tagline">Expand your mind in minutes</p>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="date-display">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="facts.html">Facts</a></li>
+                <li><a href="quotes.html">Quotes</a></li>
+                <li><a href="puzzles.html">Puzzles</a></li>
+                <li><a href="archive.html" class="active">Archive</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-header">
+            <h2>Explore Archive</h2>
+            <p>Browse through our collection of past knowledge bites</p>
+        </section>
+
+        <section class="archive-controls">
+            <div class="search-box">
+                <input type="text" id="archive-search" placeholder="Search archive...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-options">
+                <select id="content-type-filter">
+                    <option value="all">All Content Types</option>
+                    <option value="fact">Facts</option>
+                    <option value="quote">Quotes</option>
+                    <option value="puzzle">Puzzles</option>
+                </select>
+                <select id="date-filter">
+                    <option value="recent">Most Recent First</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="archive-feed" id="archive-feed">
+            <!-- Archive content loaded by JavaScript -->
+        </section>
+
+        <div class="pagination">
+            <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+            <span id="page-indicator">Page 1 of 3</span>
+            <button id="next-page">Next <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main>
+ <!-- AI Chatbot -->
+ <div class="chatbot-toggle" id="chatbot-toggle">
+    <i class="fas fa-robot"></i>
+</div>
+
+<div class="chatbot-container hidden" id="chatbot-container">
+    <div class="chatbot-header" id="chatbot-header">
+        <div class="chatbot-title">
+            <i class="fas fa-robot"></i>
+            <h3>DailyGyaan AI Assistant</h3>
+        </div>
+        <div class="chatbot-actions">
+            <i class="fas fa-times" id="close-chatbot"></i>
+        </div>
+    </div>
+    <div class="chatbot-body">
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                Hello! I'm your DailyGyaan AI assistant. Ask me anything about facts, quotes, or general knowledge!
+            </div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your question...">
+            <button class="chatbot-send-btn" id="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h4>About DailyGyaan</h4>
+                    <p>DailyGyaan is your premier destination for daily knowledge curation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="facts.html">Facts</a></li>
+                        <li><a href="quotes.html">Quotes</a></li>
+                        <li><a href="puzzles.html">Puzzles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> DailyGyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const closeChatbot = document.getElementById('close-chatbot');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotInput = document.getElementById('chatbot-input');
+            const chatbotSend = document.getElementById('chatbot-send');
+            
+            // Toggle chatbot visibility
+            chatbotToggle.addEventListener('click', function() {
+                chatbotContainer.style.display = chatbotContainer.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close chatbot
+            closeChatbot.addEventListener('click', function(e) {
+                e.stopPropagation();
+                chatbotContainer.style.display = 'none';
+            });
+            
+            // Send message to Groq API
+            async function sendMessageToGroq(message) {
+                try {
+                    // Show typing indicator
+                    const typingIndicator = document.createElement('div');
+                    typingIndicator.className = 'typing-indicator';
+                    typingIndicator.innerHTML = `
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    `;
+                    chatbotMessages.appendChild(typingIndicator);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                    
+                    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer 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' // Replace with your actual Groq API key
+                        },
+                        body: JSON.stringify({
+                            model: 'llama-3.1-8b-instant', // or another Groq-supported model
+                            messages: [
+                                {
+                                    role: 'system',
+                                    content: 'You are a helpful assistant for DailyGyaan, a knowledge platform. Provide concise, accurate answers about facts, quotes, and general knowledge.'
+                                },
+                                {
+                                    role: 'user',
+                                    content: message
+                                }
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 1024
+                        })
+                    });
+                    
+                    // Remove typing indicator
+                    chatbotMessages.removeChild(typingIndicator);
+                    
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    return data.choices[0].message.content;
+                } catch (error) {
+                    console.error('Error calling Groq API:', error);
+                    return "Sorry, I'm having trouble connecting to the knowledge base. Please try again later.";
+                }
+            }
+            
+            // Add message to chat
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(sender + '-message');
+                messageDiv.textContent = text;
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            // Send message
+            async function sendMessage() {
+                const message = chatbotInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, 'user');
+                    chatbotInput.value = '';
+                    
+                    // Get response from Groq API
+                    const response = await sendMessageToGroq(message);
+                    addMessage(response, 'bot');
+                }
+            }
+            
+            // Send message on button click
+            chatbotSend.addEventListener('click', sendMessage);
+            
+            // Send message on Enter key
+            chatbotInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
