@@ -76,6 +76,86 @@ const contentData = {
             source: "University of California",
             date: "2023-11-11",
             tags: ["science", "biology"]
+        },
+        {
+            id: 'fact-6',
+            title: "The Earth's Rotation",
+            content: "The Earth's rotation is gradually slowing down at about 17 milliseconds per hundred years. This means that in the age of dinosaurs, a day was only about 23 hours long.",
+            source: "NASA",
+            date: "2023-10-21",
+            tags: ["science", "earth"]
+        },
+        {
+            id: 'fact-7',
+            title: "Octopus Intelligence",
+            content: "Octopuses have three hearts, nine brains, and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body. When an octopus swims, the heart that delivers blood to the body stops beating.",
+            source: "National Geographic",
+            date: "2023-10-20",
+            tags: ["biology", "ocean"]
+        },
+        {
+            id: 'fact-8',
+            title: "The Great Pyramid",
+            content: "The Great Pyramid of Giza can expand and contract up to 2.5 cm due to temperature changes. The pyramid was originally covered with casing stones that formed a smooth outer surface.",
+            source: "Smithsonian",
+            date: "2023-10-19",
+            tags: ["history", "architecture"]
+        },
+        {
+            id: 'fact-9',
+            title: "Human DNA Similarity",
+            content: "All humans share 99.9% of the same DNA. The 0.1% difference accounts for all the genetic variation between individuals, including eye color, height, and susceptibility to certain diseases.",
+            source: "NIH",
+            date: "2023-10-18",
+            tags: ["science", "biology"]
+        },
+        {
+            id: 'fact-10',
+            title: "The Coldest Temperature",
+            content: "The coldest temperature ever recorded on Earth was -128.6°F (-89.2°C) at the Soviet Vostok Station in Antarctica on July 21, 1983.",
+            source: "WMO",
+            date: "2023-10-17",
+            tags: ["science", "weather"]
+        },
+        {
+            id: 'fact-11',
+            title: "The Human Eye",
+            content: "The human eye can distinguish about 10 million different colors and can detect a single photon of light in perfect conditions.",
+            source: "MIT",
+            date: "2023-10-16",
+            tags: ["biology", "science"]
+        },
+        {
+            id: 'fact-12',
+            title: "The Internet's Weight",
+            content: "If you could weigh the entire internet, it would only be about 50 grams - roughly the weight of a strawberry. This is based on the weight of all the electrons in motion that make up the internet's data.",
+            source: "Scientific American",
+            date: "2023-10-15",
+            tags: ["technology", "physics"]
+        },
+        {
+            id: 'fact-13',
+            title: "Venus' Rotation",
+            content: "Venus is the only planet in our solar system that rotates clockwise. A day on Venus (one full rotation) is longer than its year (one orbit around the Sun).",
+            source: "NASA",
+            date: "2023-10-14",
+            tags: ["space", "science"]
+        },
+        {
+            id: 'fact-14',
+            title: "The World's Oldest Living Organism",
+            content: "The world's oldest known living organism is a grove of quaking aspen trees in Utah named Pando, estimated to be around 80,000 years old. The entire grove is a single organism connected by a massive root system.",
+            source: "US Forest Service",
+            date: "2023-10-13",
+            tags: ["biology", "nature"]
+        },
+        {
+            id: 'fact-15',
+            title: "The Speed of Thought",
+            content: "Nerve impulses in the human body travel at speeds up to 250 mph (400 km/h). The fastest nerve impulses are those that tell your muscles to move.",
+            source: "Harvard Medical School",
+            date: "2023-10-12",
+            tags: ["biology", "neuroscience"]
         }
     ],
     quotes: [
@@ -113,6 +193,76 @@ const contentData = {
             author: "B.B. King",
             date: "2023-11-06",
             tags: ["learning", "wisdom"]
+        },
+        {
+            id: 'quote-6',
+            content: "The only way to do great work is to love what you do.",
+            author: "Steve Jobs",
+            date: "2023-10-11",
+            tags: ["work", "passion"]
+        },
+        {
+            id: 'quote-7',
+            content: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+            author: "Winston Churchill",
+            date: "2023-10-10",
+            tags: ["success", "perseverance"]
+        },
+        {
+            id: 'quote-8',
+            content: "The mind is everything. What you think you become.",
+            author: "Buddha",
+            date: "2023-10-09",
+            tags: ["mindset", "wisdom"]
+        },
+        {
+            id: 'quote-9',
+            content: "Life is what happens when you're busy making other plans.",
+            author: "John Lennon",
+            date: "2023-10-08",
+            tags: ["life", "wisdom"]
+        },
+        {
+            id: 'quote-10',
+            content: "The best way to predict the future is to invent it.",
+            author: "Alan Kay",
+            date: "2023-10-07",
+            tags: ["future", "innovation"]
+        },
+        {
+            id: 'quote-11',
+            content: "Do not watch the clock. Do what it does. Keep going.",
+            author: "Sam Levenson",
+            date: "2023-10-06",
+            tags: ["perseverance", "time"]
+        },
+        {
+            id: 'quote-12',
+            content: "The only limit to our realization of tomorrow is our doubts of today.",
+            author: "Franklin D. Roosevelt",
+            date: "2023-10-05",
+            tags: ["future", "confidence"]
+        },
+        {
+            id: 'quote-13',
+            content: "You miss 100% of the shots you don't take.",
+            author: "Wayne Gretzky",
+            date: "2023-10-04",
+            tags: ["opportunity", "sports"]
+        },
+        {
+            id: 'quote-14',
+            content: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+            author: "Nelson Mandela",
+            date: "2023-10-03",
+            tags: ["resilience", "success"]
+        },
+        {
+            id: 'quote-15',
+            content: "The future belongs to those who believe in the beauty of their dreams.",
+            author: "Eleanor Roosevelt",
+            date: "2023-10-02",
+            tags: ["dreams", "future"]
         }
     ],
     puzzles: [
@@ -155,6 +305,86 @@ const contentData = {
             answer: "312211 (Each number describes the previous number. 1 = one 1 = 11, 11 = two 1s = 21, etc.)",
             date: "2023-11-01",
             tags: ["math", "sequence"]
+        },
+        {
+            id: 'puzzle-6',
+            title: "River Crossing",
+            content: "A farmer needs to transport a wolf, a goat, and a cabbage across a river. His boat can only carry one item at a time. If left alone, the wolf will eat the goat, and the goat will eat the cabbage. How does he get all three across safely?",
+            answer: "1. Take goat across first. 2. Return alone. 3. Take wolf across. 4. Bring goat back. 5. Take cabbage across. 6. Return alone. 7. Take goat across.",
+            date: "2023-10-31",
+            tags: ["logic", "classic"]
+        },
+        {
+            id: 'puzzle-7',
+            title: "Light Switch Riddle",
+            content: "There are three light switches outside a room. Only one controls a bulb inside the room. You can flip switches but once you open the door, you can't change them. How can you determine which switch controls the bulb with just one attempt?",
+            answer: "Turn on first switch for 5 minutes, then turn it off and turn on second switch. The bulb that's on is controlled by second switch, warm but off is first switch, cold is third switch.",
+            date: "2023-10-30",
+            tags: ["logic", "practical"]
+        },
+        {
+            id: 'puzzle-8',
+            title: "Two Doors",
+            content: "You're in a room with two doors. One leads to safety, the other to certain death. Each door has a guard. One always lies, one always tells the truth. You can ask one guard one question to find the safe door. What do you ask?",
+            answer: "Ask either guard: 'What would the other guard say is the safe door?' Then choose the opposite door.",
+            date: "2023-10-29",
+            tags: ["logic", "classic"]
+        },
+        {
+            id: 'puzzle-9',
+            title: "The Missing Dollar",
+            content: "Three people check into a hotel room that costs $30. They each contribute $10. Later, the clerk realizes it should have been $25, so gives $5 to the bellboy to return. The bellboy keeps $2 and gives $1 to each guest. Now each guest paid $9 ($27 total) and the bellboy has $2 - where's the missing dollar?",
+            answer: "The $27 includes the $25 for the room plus the $2 kept by the bellboy. There is no missing dollar - the math is misleading.",
+            date: "2023-10-28",
+            tags: ["math", "trick"]
+        },
+        {
+            id: 'puzzle-10',
+            title: "Tennis Tournament",
+            content: "There are 128 players in a single-elimination tennis tournament. How many matches must be played to determine the champion?",
+            answer: "127 matches (every match eliminates one player, and you need to eliminate 127 players to leave one champion).",
+            date: "2023-10-27",
+            tags: ["math", "sports"]
+        },
+        {
+            id: 'puzzle-11',
+            title: "Poisoned Wine",
+            content: "You have 1000 bottles of wine, one of which is poisoned. You have 10 rats to test which bottle is poisoned. The poison takes exactly 1 hour to show effects. How can you find the poisoned bottle in just one hour?",
+            answer: "Number bottles 1-1000. Assign each rat a binary digit. Have each rat drink from bottles where their digit is 1. The dead rats' positions reveal the poisoned bottle in binary.",
+            date: "2023-10-26",
+            tags: ["logic", "binary"]
+        },
+        {
+            id: 'puzzle-12',
+            title: "The Monty Hall Problem",
+            content: "You're on a game show with 3 doors. Behind one is a car, behind others, goats. You pick a door (say Door 1). The host, who knows what's behind the doors, opens another door (say Door 3) revealing a goat. He then asks if you want to switch to Door 2. Should you switch?",
+            answer: "Yes, you should switch. Switching gives you a 2/3 chance of winning, while staying gives only 1/3 chance.",
+            date: "2023-10-25",
+            tags: ["probability", "counterintuitive"]
+        },
+        {
+            id: 'puzzle-13',
+            title: "The Burning Ropes",
+            content: "You have two ropes that each take exactly 60 minutes to burn. However, they don't burn at consistent speeds. How can you measure exactly 45 minutes using these ropes?",
+            answer: "Light the first rope at both ends and the second rope at one end simultaneously. When the first rope burns out (after 30 minutes), light the other end of the second rope. It will then take 15 more minutes to burn out, totaling 45 minutes.",
+            date: "2023-10-24",
+            tags: ["time", "practical"]
+        },
+        {
+            id: 'puzzle-14',
+            title: "The Prisoner's Hat Puzzle",
+            content: "Three prisoners are lined up so the first can see the other two, the middle sees one, and the last sees none. They're each given a red or blue hat randomly. They can't communicate. Starting from the back, each must guess their hat color. How can they guarantee at least one correct answer?",
+            answer: "The last prisoner says 'red' if he sees an odd number of red hats, or 'blue' if even. Each subsequent prisoner can deduce their hat color based on previous answers and what they see.",
+            date: "2023-10-23",
+            tags: ["logic", "prisoners"]
+        },
+        {
+            id: 'puzzle-15',
+            title: "The Impossible Chessboard",
+            content: "A prison warden places 64 coins randomly on a chessboard, each showing heads or tails. He points to one coin he wants flipped. A prisoner sees the board, flips one coin, and leaves. Another prisoner enters later and must identify the marked coin just by looking at the board. How can they communicate this information?",
+            answer: "They use the board as a binary matrix where heads=1 and tails=0. The first prisoner flips a coin to make the XOR of all heads point to the marked square.",
+            date: "2023-10-22",
+            tags: ["math", "binary", "advanced"]
         }
     ]
 };
